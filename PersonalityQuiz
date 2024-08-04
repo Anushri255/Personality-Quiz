@@ -49,6 +49,12 @@ class PersonalityQuizApp:
             self.ask_sunsets_question()
         elif self.current_question == 'adventure':
             self.ask_adventure_question()
+        elif self.current_question == 'hobbies':
+            self.ask_hobbies_question()
+        elif self.current_question == 'books':
+            self.ask_books_question()
+        elif self.current_question == 'travel':
+            self.ask_travel_question()
     
     def ask_color_question(self):
         tk.Label(self.root, text=f"{self.user_name}, do you prefer the color blue or red?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
@@ -79,6 +85,24 @@ class PersonalityQuizApp:
         
         tk.Button(self.root, text="Yes (Y)", command=lambda: self.handle_answer('Y'), bg='#3498db', fg='#ffffff').pack(pady=5)
         tk.Button(self.root, text="No (N)", command=lambda: self.handle_answer('N'), bg='#e74c3c', fg='#ffffff').pack(pady=5)
+    
+    def ask_hobbies_question(self):
+        tk.Label(self.root, text=f"{self.user_name}, do you enjoy outdoor activities or indoor hobbies?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
+        
+        tk.Button(self.root, text="Outdoor (O)", command=lambda: self.handle_answer('O'), bg='#3498db', fg='#ffffff').pack(pady=5)
+        tk.Button(self.root, text="Indoor (I)", command=lambda: self.handle_answer('I'), bg='#e74c3c', fg='#ffffff').pack(pady=5)
+
+    def ask_books_question(self):
+        tk.Label(self.root, text=f"{self.user_name}, do you prefer fiction or non-fiction books?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
+        
+        tk.Button(self.root, text="Fiction (F)", command=lambda: self.handle_answer('F'), bg='#3498db', fg='#ffffff').pack(pady=5)
+        tk.Button(self.root, text="Non-Fiction (NF)", command=lambda: self.handle_answer('NF'), bg='#e74c3c', fg='#ffffff').pack(pady=5)
+    
+    def ask_travel_question(self):
+        tk.Label(self.root, text=f"{self.user_name}, do you prefer traveling to new places or relaxing at home?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
+        
+        tk.Button(self.root, text="Travel (T)", command=lambda: self.handle_answer('T'), bg='#3498db', fg='#ffffff').pack(pady=5)
+        tk.Button(self.root, text="Home (H)", command=lambda: self.handle_answer('H'), bg='#e74c3c', fg='#ffffff').pack(pady=5)
     
     def handle_answer(self, answer):
         if self.current_question == 'color':
@@ -122,6 +146,34 @@ class PersonalityQuizApp:
                 messagebox.showinfo("Result", "You are a person overflowing with creativity and you observe things very closely.")
             elif answer == 'N':
                 messagebox.showinfo("Result", "You are a calm person who thinks before doing things and understands things very well.")
+            else:
+                messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
+                return
+            self.start_screen()
+            return
+        elif self.current_question == 'hobbies':
+            if answer == 'O':
+                self.current_question = 'books'
+            elif answer == 'I':
+                self.current_question = 'travel'
+            else:
+                messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
+                return
+        elif self.current_question == 'books':
+            if answer == 'F':
+                messagebox.showinfo("Result", "You enjoy immersing yourself in imaginative worlds and stories.")
+            elif answer == 'NF':
+                messagebox.showinfo("Result", "You value learning and gaining knowledge from real-world experiences.")
+            else:
+                messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
+                return
+            self.start_screen()
+            return
+        elif self.current_question == 'travel':
+            if answer == 'T':
+                messagebox.showinfo("Result", "You love exploring new places and experiencing new cultures.")
+            elif answer == 'H':
+                messagebox.showinfo("Result", "You find comfort and joy in your familiar surroundings.")
             else:
                 messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
                 return

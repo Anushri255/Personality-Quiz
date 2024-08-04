@@ -1,10 +1,10 @@
 # import the module time
 import time
 
-#thirdQues
 def sunsets():
     print('Do you like watching sunsets with people you love?')
     ans5=(input("Choose Y or N\n"))
+    ans5 = ans5.upper()
     print()
     if ans5== 'Y':   
         print("You are a person overflowing with creativity and you observe things very closely")
@@ -15,10 +15,10 @@ def sunsets():
         sunsets()
     
 
-#thirdQues
 def adventure():
     print('Do you think you are an adventurer?')
     ans4=(input("Choose Y or N\n"))
+    ans4 = ans4.upper()
     print()
     if ans4== 'Y':   
         print("You are a person overflowing with creativity and you observe things very closely")
@@ -28,10 +28,10 @@ def adventure():
         print('Your answer is not valid, please try again')
         adventure()
 
-#secondQues
 def room():
     print('Is your room brightly coloured or very neat?')
     ans2=(input("Choose between 'C' for coloured or 'N' for neat\n"))
+    ans2 = ans2.upper()
     print()
     if ans2== 'C':
         adventure()
@@ -41,10 +41,10 @@ def room():
         print('Your answer is not valid, please try again')
         room()
 
-#secondQues
 def skySea():
     print('Do you prefer blue sky or blue sea? ')
     ans2=(input('Choose between SKY or SEA\n'))
+    ans2 = ans2.upper()
     print()
     if ans2== 'SKY':
           adventure()
@@ -54,10 +54,10 @@ def skySea():
         print('Your answer is not valid, please try again')
         skySea()
 
-#firstQues      
 def colour():
     print('Do you prefer the colour blue or red? ')
     ans1=(input('Choose between R or B\n'))
+    ans1 = ans1.upper()
     print()
     if ans1== 'R':
         room()
@@ -77,7 +77,4 @@ print("This is a quiz which will reveal something about yourself!")
 print("Try to answer the questions as honestly as possible")
 time.sleep(2)
 print()
-print("Turn your CapsLock on for all the answers.")
-print("Note that this program is case sensitive!")
-time.sleep(5)
 colour()

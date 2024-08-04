@@ -13,18 +13,19 @@ class PersonalityQuizApp:
         self.initialize_gui()
     
     def initialize_gui(self):
+        self.root.configure(bg='#f0f0f0')  # Set background color
         self.start_screen()
     
     def start_screen(self):
         self.clear_screen()
         
-        tk.Label(self.root, text="Welcome to the Personality Quiz!", font=("Arial", 16)).pack(pady=10)
+        tk.Label(self.root, text="Welcome to the Personality Quiz!", font=("Arial", 16), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
         
-        tk.Label(self.root, text="What is your nickname?").pack(pady=5)
-        self.nickname_entry = tk.Entry(self.root)
+        tk.Label(self.root, text="What is your nickname?", bg='#f0f0f0', fg='#34495e').pack(pady=5)
+        self.nickname_entry = tk.Entry(self.root, bg='#ffffff', fg='#2c3e50')
         self.nickname_entry.pack(pady=5)
         
-        tk.Button(self.root, text="Start Quiz", command=self.start_quiz).pack(pady=20)
+        tk.Button(self.root, text="Start Quiz", command=self.start_quiz, bg='#3498db', fg='#ffffff').pack(pady=20)
     
     def start_quiz(self):
         self.user_name = self.nickname_entry.get()
@@ -50,34 +51,34 @@ class PersonalityQuizApp:
             self.ask_adventure_question()
     
     def ask_color_question(self):
-        tk.Label(self.root, text=f"{self.user_name}, do you prefer the color blue or red?", font=("Arial", 14)).pack(pady=10)
+        tk.Label(self.root, text=f"{self.user_name}, do you prefer the color blue or red?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
         
-        tk.Button(self.root, text="Blue (B)", command=lambda: self.handle_answer('B')).pack(pady=5)
-        tk.Button(self.root, text="Red (R)", command=lambda: self.handle_answer('R')).pack(pady=5)
+        tk.Button(self.root, text="Blue (B)", command=lambda: self.handle_answer('B'), bg='#3498db', fg='#ffffff').pack(pady=5)
+        tk.Button(self.root, text="Red (R)", command=lambda: self.handle_answer('R'), bg='#e74c3c', fg='#ffffff').pack(pady=5)
     
     def ask_room_question(self):
-        tk.Label(self.root, text=f"{self.user_name}, is your room brightly colored or very neat?", font=("Arial", 14)).pack(pady=10)
+        tk.Label(self.root, text=f"{self.user_name}, is your room brightly colored or very neat?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
         
-        tk.Button(self.root, text="Colored (C)", command=lambda: self.handle_answer('C')).pack(pady=5)
-        tk.Button(self.root, text="Neat (N)", command=lambda: self.handle_answer('N')).pack(pady=5)
+        tk.Button(self.root, text="Colored (C)", command=lambda: self.handle_answer('C'), bg='#e67e22', fg='#ffffff').pack(pady=5)
+        tk.Button(self.root, text="Neat (N)", command=lambda: self.handle_answer('N'), bg='#2ecc71', fg='#ffffff').pack(pady=5)
     
     def ask_sky_sea_question(self):
-        tk.Label(self.root, text=f"{self.user_name}, do you prefer blue sky or blue sea?", font=("Arial", 14)).pack(pady=10)
+        tk.Label(self.root, text=f"{self.user_name}, do you prefer blue sky or blue sea?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
         
-        tk.Button(self.root, text="Sky (SKY)", command=lambda: self.handle_answer('SKY')).pack(pady=5)
-        tk.Button(self.root, text="Sea (SEA)", command=lambda: self.handle_answer('SEA')).pack(pady=5)
+        tk.Button(self.root, text="Sky (SKY)", command=lambda: self.handle_answer('SKY'), bg='#3498db', fg='#ffffff').pack(pady=5)
+        tk.Button(self.root, text="Sea (SEA)", command=lambda: self.handle_answer('SEA'), bg='#1abc9c', fg='#ffffff').pack(pady=5)
     
     def ask_sunsets_question(self):
-        tk.Label(self.root, text=f"{self.user_name}, do you like watching sunsets with people you love?", font=("Arial", 14)).pack(pady=10)
+        tk.Label(self.root, text=f"{self.user_name}, do you like watching sunsets with people you love?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
         
-        tk.Button(self.root, text="Yes (Y)", command=lambda: self.handle_answer('Y')).pack(pady=5)
-        tk.Button(self.root, text="No (N)", command=lambda: self.handle_answer('N')).pack(pady=5)
+        tk.Button(self.root, text="Yes (Y)", command=lambda: self.handle_answer('Y'), bg='#3498db', fg='#ffffff').pack(pady=5)
+        tk.Button(self.root, text="No (N)", command=lambda: self.handle_answer('N'), bg='#e74c3c', fg='#ffffff').pack(pady=5)
     
     def ask_adventure_question(self):
-        tk.Label(self.root, text=f"{self.user_name}, do you think you are an adventurer?", font=("Arial", 14)).pack(pady=10)
+        tk.Label(self.root, text=f"{self.user_name}, do you think you are an adventurer?", font=("Arial", 14), bg='#f0f0f0', fg='#2c3e50').pack(pady=10)
         
-        tk.Button(self.root, text="Yes (Y)", command=lambda: self.handle_answer('Y')).pack(pady=5)
-        tk.Button(self.root, text="No (N)", command=lambda: self.handle_answer('N')).pack(pady=5)
+        tk.Button(self.root, text="Yes (Y)", command=lambda: self.handle_answer('Y'), bg='#3498db', fg='#ffffff').pack(pady=5)
+        tk.Button(self.root, text="No (N)", command=lambda: self.handle_answer('N'), bg='#e74c3c', fg='#ffffff').pack(pady=5)
     
     def handle_answer(self, answer):
         if self.current_question == 'color':

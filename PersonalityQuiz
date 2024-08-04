@@ -1,80 +1,139 @@
-# import the module time
-import time
+import tkinter as tk
+from tkinter import messagebox
 
-def sunsets():
-    print('Do you like watching sunsets with people you love?')
-    ans5=(input("Choose Y or N\n"))
-    ans5 = ans5.upper()
-    print()
-    if ans5== 'Y':   
-        print("You are a person overflowing with creativity and you observe things very closely")
-    elif ans5== "N":
-        adventure()
-    else:
-        print('Your answer is not valid, please try again')
-        sunsets()
+class PersonalityQuizApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Personality Quiz")
+        
+        self.user_name = ""
+        self.current_question = None
+        
+        # Initialize GUI
+        self.initialize_gui()
     
-
-def adventure():
-    print('Do you think you are an adventurer?')
-    ans4=(input("Choose Y or N\n"))
-    ans4 = ans4.upper()
-    print()
-    if ans4== 'Y':   
-        print("You are a person overflowing with creativity and you observe things very closely")
-    elif ans4== "N":
-        print("You are a calm person who thinks before doing things and understands things very well ")
-    else:
-        print('Your answer is not valid, please try again')
-        adventure()
-
-def room():
-    print('Is your room brightly coloured or very neat?')
-    ans2=(input("Choose between 'C' for coloured or 'N' for neat\n"))
-    ans2 = ans2.upper()
-    print()
-    if ans2== 'C':
-        adventure()
-    elif ans2=='N':
-        sunsets()
-    else:
-        print('Your answer is not valid, please try again')
-        room()
-
-def skySea():
-    print('Do you prefer blue sky or blue sea? ')
-    ans2=(input('Choose between SKY or SEA\n'))
-    ans2 = ans2.upper()
-    print()
-    if ans2== 'SKY':
-          adventure()
-    elif ans2=='SEA':
-        print("You are a calm person who thinks before doing things and understands things very well")
-    else:
-        print('Your answer is not valid, please try again')
-        skySea()
-
-def colour():
-    print('Do you prefer the colour blue or red? ')
-    ans1=(input('Choose between R or B\n'))
-    ans1 = ans1.upper()
-    print()
-    if ans1== 'R':
-        room()
-    elif ans1=='B':
-        skySea()
-    else:
-        print('Your answer is not valid, please try again')
-        colour()
+    def initialize_gui(self):
+        self.start_screen()
     
- 
-print('Welcome to this personality quiz!')
-user=(input('\nWhat is your nick name? '))
-print('That is an awesome name ' +user)
-print()
-time.sleep(3)
-print("This is a quiz which will reveal something about yourself!")
-print("Try to answer the questions as honestly as possible")
-time.sleep(2)
-print()
-colour()
+    def start_screen(self):
+        self.clear_screen()
+        
+        tk.Label(self.root, text="Welcome to the Personality Quiz!", font=("Arial", 16)).pack(pady=10)
+        
+        tk.Label(self.root, text="What is your nickname?").pack(pady=5)
+        self.nickname_entry = tk.Entry(self.root)
+        self.nickname_entry.pack(pady=5)
+        
+        tk.Button(self.root, text="Start Quiz", command=self.start_quiz).pack(pady=20)
+    
+    def start_quiz(self):
+        self.user_name = self.nickname_entry.get()
+        if not self.user_name:
+            messagebox.showwarning("Warning", "Please enter a nickname!")
+            return
+        
+        self.current_question = 'color'
+        self.ask_question()
+    
+    def ask_question(self):
+        self.clear_screen()
+        
+        if self.current_question == 'color':
+            self.ask_color_question()
+        elif self.current_question == 'room':
+            self.ask_room_question()
+        elif self.current_question == 'skySea':
+            self.ask_sky_sea_question()
+        elif self.current_question == 'sunsets':
+            self.ask_sunsets_question()
+        elif self.current_question == 'adventure':
+            self.ask_adventure_question()
+    
+    def ask_color_question(self):
+        tk.Label(self.root, text=f"{self.user_name}, do you prefer the color blue or red?", font=("Arial", 14)).pack(pady=10)
+        
+        tk.Button(self.root, text="Blue (B)", command=lambda: self.handle_answer('B')).pack(pady=5)
+        tk.Button(self.root, text="Red (R)", command=lambda: self.handle_answer('R')).pack(pady=5)
+    
+    def ask_room_question(self):
+        tk.Label(self.root, text=f"{self.user_name}, is your room brightly colored or very neat?", font=("Arial", 14)).pack(pady=10)
+        
+        tk.Button(self.root, text="Colored (C)", command=lambda: self.handle_answer('C')).pack(pady=5)
+        tk.Button(self.root, text="Neat (N)", command=lambda: self.handle_answer('N')).pack(pady=5)
+    
+    def ask_sky_sea_question(self):
+        tk.Label(self.root, text=f"{self.user_name}, do you prefer blue sky or blue sea?", font=("Arial", 14)).pack(pady=10)
+        
+        tk.Button(self.root, text="Sky (SKY)", command=lambda: self.handle_answer('SKY')).pack(pady=5)
+        tk.Button(self.root, text="Sea (SEA)", command=lambda: self.handle_answer('SEA')).pack(pady=5)
+    
+    def ask_sunsets_question(self):
+        tk.Label(self.root, text=f"{self.user_name}, do you like watching sunsets with people you love?", font=("Arial", 14)).pack(pady=10)
+        
+        tk.Button(self.root, text="Yes (Y)", command=lambda: self.handle_answer('Y')).pack(pady=5)
+        tk.Button(self.root, text="No (N)", command=lambda: self.handle_answer('N')).pack(pady=5)
+    
+    def ask_adventure_question(self):
+        tk.Label(self.root, text=f"{self.user_name}, do you think you are an adventurer?", font=("Arial", 14)).pack(pady=10)
+        
+        tk.Button(self.root, text="Yes (Y)", command=lambda: self.handle_answer('Y')).pack(pady=5)
+        tk.Button(self.root, text="No (N)", command=lambda: self.handle_answer('N')).pack(pady=5)
+    
+    def handle_answer(self, answer):
+        if self.current_question == 'color':
+            if answer == 'R':
+                self.current_question = 'room'
+            elif answer == 'B':
+                self.current_question = 'skySea'
+            else:
+                messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
+                return
+        elif self.current_question == 'room':
+            if answer == 'C':
+                self.current_question = 'adventure'
+            elif answer == 'N':
+                self.current_question = 'sunsets'
+            else:
+                messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
+                return
+        elif self.current_question == 'skySea':
+            if answer == 'SKY':
+                self.current_question = 'adventure'
+            elif answer == 'SEA':
+                messagebox.showinfo("Result", "You are a calm person who thinks before doing things and understands things very well.")
+                self.start_screen()
+                return
+            else:
+                messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
+                return
+        elif self.current_question == 'sunsets':
+            if answer == 'Y':
+                messagebox.showinfo("Result", "You are a person overflowing with creativity and you observe things very closely.")
+                self.start_screen()
+                return
+            elif answer == 'N':
+                self.current_question = 'adventure'
+            else:
+                messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
+                return
+        elif self.current_question == 'adventure':
+            if answer == 'Y':
+                messagebox.showinfo("Result", "You are a person overflowing with creativity and you observe things very closely.")
+            elif answer == 'N':
+                messagebox.showinfo("Result", "You are a calm person who thinks before doing things and understands things very well.")
+            else:
+                messagebox.showwarning("Invalid Answer", "Please choose a valid answer.")
+                return
+            self.start_screen()
+            return
+
+        self.ask_question()
+    
+    def clear_screen(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = PersonalityQuizApp(root)
+    root.mainloop()

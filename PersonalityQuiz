@@ -1,1 +1,83 @@
-# Personality Quiz
+# import the module time
+import time
+
+#thirdQues
+def sunsets():
+    print('Do you like watching sunsets with people you love?')
+    ans5=(input("Choose Y or N\n"))
+    print()
+    if ans5== 'Y':   
+        print("You are a person overflowing with creativity and you observe things very closely")
+    elif ans5== "N":
+        adventure()
+    else:
+        print('Your answer is not valid, please try again')
+        sunsets()
+    
+
+#thirdQues
+def adventure():
+    print('Do you think you are an adventurer?')
+    ans4=(input("Choose Y or N\n"))
+    print()
+    if ans4== 'Y':   
+        print("You are a person overflowing with creativity and you observe things very closely")
+    elif ans4== "N":
+        print("You are a calm person who thinks before doing things and understands things very well ")
+    else:
+        print('Your answer is not valid, please try again')
+        adventure()
+
+#secondQues
+def room():
+    print('Is your room brightly coloured or very neat?')
+    ans2=(input("Choose between 'C' for coloured or 'N' for neat\n"))
+    print()
+    if ans2== 'C':
+        adventure()
+    elif ans2=='N':
+        sunsets()
+    else:
+        print('Your answer is not valid, please try again')
+        room()
+
+#secondQues
+def skySea():
+    print('Do you prefer blue sky or blue sea? ')
+    ans2=(input('Choose between SKY or SEA\n'))
+    print()
+    if ans2== 'SKY':
+          adventure()
+    elif ans2=='SEA':
+        print("You are a calm person who thinks before doing things and understands things very well")
+    else:
+        print('Your answer is not valid, please try again')
+        skySea()
+
+#firstQues      
+def colour():
+    print('Do you prefer the colour blue or red? ')
+    ans1=(input('Choose between R or B\n'))
+    print()
+    if ans1== 'R':
+        room()
+    elif ans1=='B':
+        skySea()
+    else:
+        print('Your answer is not valid, please try again')
+        colour()
+    
+ 
+print('Welcome to this personality quiz!')
+user=(input('\nWhat is your nick name? '))
+print('That is an awesome name ' +user)
+print()
+time.sleep(3)
+print("This is a quiz which will reveal something about yourself!")
+print("Try to answer the questions as honestly as possible")
+time.sleep(2)
+print()
+print("Turn your CapsLock on for all the answers.")
+print("Note that this program is case sensitive!")
+time.sleep(5)
+colour()
